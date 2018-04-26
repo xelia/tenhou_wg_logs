@@ -77,8 +77,10 @@ WSGI_APPLICATION = 'wg_logs.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'tenhou_wg_logs',
+        'LOGIN': 'tenhou_wg_logs',
+        'PASSWORD': 'tenhou_wg_logs',
     }
 }
 
@@ -124,4 +126,7 @@ STATIC_URL = '/static/'
 
 TENHOU_WG_URL = 'https://mjv.jp/0/wg/0.js'
 
-AUTH_PASSWORD_VALIDATORS = []
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 100
+}

@@ -4,14 +4,14 @@ from rest_framework import serializers
 from wg_logs import models
 
 
-class PlayerSerializer(serializers.ModelSerializer):
+class PlayerInlineSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.TenhouWgPlayer
         fields = '__all__'
 
 
 class GameSerializer(serializers.ModelSerializer):
-    players = PlayerSerializer(many=True)
+    players = PlayerInlineSerializer(many=True)
     game_link = serializers.CharField()
 
     class Meta:
@@ -19,4 +19,5 @@ class GameSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-
+class PlayerSerializer(PlayerInlineSerializer):
+    game = GameSerializer()

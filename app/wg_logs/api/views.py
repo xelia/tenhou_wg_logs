@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-from django.http import Http404
-from rest_framework import viewsets, filters
-from rest_framework.response import Response
+from rest_framework import viewsets, filters, pagination
 
 from wg_logs.api import serializers
 from wg_logs import models
@@ -14,11 +12,8 @@ class GamesViewSet(viewsets.ReadOnlyModelViewSet):
     search_fields = ('players__name',)
 
 
-class PlayerViewSet(viewsets.ViewSet):
-    queryset = models.TenhouWgPlayer.objects.all()
-    def retrieve(self, request, pk=None):
-        player = self.queryset.filter(name=pk).order_by('-game__creation_datetime').first()
-        if not player:
-            raise Http404()
-        serializer = serializers.PlayerSerializer(player)
-        return Response(serializer.data)
+class PlayerViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = models.TenhouWgPlayer.objects.order_by('name', '-game__creation_datetime').distinct('name')
+    serializer_class = serializers.PlayerSerializer
+    lookup_field = 'name'
+

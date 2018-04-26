@@ -6,7 +6,7 @@ from wg_logs import models
 
 class PlayerInline(admin.TabularInline):
     model = models.TenhouWgPlayer
-    readonly_fields = ('name', 'dan', 'rate')
+    # readonly_fields = ('name', 'dan', 'rate')
     extra = 0
     can_delete = False
 
