@@ -123,6 +123,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATIC_ROOT = "/var/www/tenhou_wg_logs/static/"
+
 
 TENHOU_WG_URL = 'https://mjv.jp/0/wg/0.js'
 
