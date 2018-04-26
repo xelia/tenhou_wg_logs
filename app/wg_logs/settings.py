@@ -80,7 +80,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'HOST': '127.0.0.1',
         'NAME': 'tenhou_wg_logs',
-        'LOGIN': 'tenhou_wg_logs',
+        'USER': 'tenhou_wg_logs',
         'PASSWORD': 'tenhou_wg_logs',
     }
 }
